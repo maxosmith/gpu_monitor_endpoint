@@ -9,13 +9,7 @@ from ansi2html import ansi2html
 app = Flask(__name__)
 
 MACHINES = [
-    "http://rldl1.eecs.umich.edu:5000",
-    "http://rldl2.eecs.umich.edu:5000",
-    "http://rldl3.eecs.umich.edu:5000",
-    "http://rldl4.eecs.umich.edu:5003",
-    "http://rldl5.eecs.umich.edu:4042",
-    "http://rldl6.eecs.umich.edu:5003",
-    "http://rldl8.eecs.umich.edu:5000"
+    "",
 ]
 
 REFRESH_RATE = 10
