@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/")
 def main():
     stats = gpustat.new_query()
-    cpu_usage = >>> x = commands.getstatusoutput(
+    cpu_usage = commands.getstatusoutput(
         "grep 'cpu ' /proc/stat | awk '{{usage=($2+$4)*100/($2+$4+$5)}} END {{print usage \"%\"}}'")[0]
 
     data_json = jsonify(stat.jsonify())
