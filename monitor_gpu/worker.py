@@ -12,9 +12,10 @@ app = Flask(__name__)
 @app.route("/")
 def main():
     stats = gpustat.new_query()
-    cpu_usage = commands.getstatusoutput(
-        "top -b -n2 -p 1 | fgrep \"Cpu(s)\" | tail -1 | awk -F'id,' -v prefix=\"$prefix\" '{{ split($1, vs, \",\"); v=vs[length(vs)]; sub(\"%\", \"\", v); printf \"%s%.1f%%\n\", prefix, 100 - v }}'")[1]
-
+    cpu_usage = commands.getstatusoutput("top -b -n 2 | grep %Cpu | sed -n 2p | awk -F',' '{{print $4}}'")[1]
+    cpu_usage = 100 - float(cpu_usage.split(' ')[1])
+    cpu_usage = "{}%".format(cpu_usage)
+    
     data_json = stats.jsonify()
     data_json["cpu.usage"] = cpu_usage
     data_json = jsonify(data_json)
